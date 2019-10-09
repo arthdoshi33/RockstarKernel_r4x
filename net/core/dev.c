@@ -3512,7 +3512,7 @@ int netif_rx_ni(struct sk_buff *skb)
 }
 EXPORT_SYMBOL(netif_rx_ni);
 
-static __latent_entropy void net_tx_action(struct softirq_action *h)
+static void net_tx_action(struct softirq_action *h)
 {
 	struct softnet_data *sd = this_cpu_ptr(&softnet_data);
 
@@ -4668,7 +4668,7 @@ struct napi_struct *get_current_napi_context(void)
 }
 EXPORT_SYMBOL(get_current_napi_context);
 
-static __latent_entropy void net_rx_action(struct softirq_action *h)
+static void net_rx_action(struct softirq_action *h)
 {
 	struct softnet_data *sd = this_cpu_ptr(&softnet_data);
 	unsigned long time_limit = jiffies + 2;
