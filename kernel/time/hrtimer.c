@@ -49,7 +49,7 @@
 #include <linux/sched/deadline.h>
 #include <linux/timer.h>
 #include <linux/freezer.h>
-
+#include <linux/delay.h>
 #include <asm/uaccess.h>
 
 #include <trace/events/timer.h>
