@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-export KERNELDIR="$HOME/RockstarKernel_r4x" 
+export KERNELDIR="$PWD" 
 git config --global user.email "dhruvgera61@gmail.com"
 git config --global user.name "Dhruv"
- 
+sudo apt install jq 
 export TZ="Asia/Kolkata";
  
 # Kernel compiling script
@@ -81,12 +81,11 @@ export IMAGE="${OUTDIR}/arch/${ARCH}/boot/Image.gz";
 export NTDTB="${OUTDIR}/arch/${ARCH}/boot/dts/qcom/msm8940-pmi8950-qrd-sku7_S88536AA2.dtb";
 export TDTB="${OUTDIR}/arch/arm64/boot/dts/qcom/msm8940-pmi8950-qrd-sku7_S88536AA2-treble.dtb";
 
-export CHAT_ID="-1001344943713";
-export BOT_API_KEY="780524065:AAHoWvNA0Z3TrzNboNX3wUzUvHZpFLyUKb0"
-export CC=$HOME/TC/clang/bin/clang
+export CHAT_ID="569291499";
+export CC=$HOME/dragontc/bin/clang
 export CLANG_VERSION=$($CC --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 export CLANG_TRIPLE=aarch64-linux-gnu-
-export CLANG_LD_PATH=$HOME/TC/clang
+export CLANG_LD_PATH=$HOME/dragontc
 export LLVM_DIS=$HOME/clang/bin/llvm-dis
 export CROSS_COMPILE=$HOME/TC/aarch64-linux-gnu-8.x
 #  Clang
@@ -175,16 +174,16 @@ make -j$BUILD_JOB_NUMBER ARCH=$ARCH \
 
 	echo "compiling..."
 	
-	export KBUILD_COMPILER_STRING=$($HOME/TC/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/ */ /g' -e 's/[[:space:]]*$//') && make O=out ARCH=arm64 santoni_defconfig 
+	export KBUILD_COMPILER_STRING=$($HOME/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/ */ /g' -e 's/[[:space:]]*$//') && make O=out ARCH=arm64 santoni_defconfig 
 make -j$(nproc --all) O=out \ 
 	              ARCH=arm64\
-	              CC="$HOME/TC/clang/bin/clang" \ 
+	              CC="$HOME/bin/clang" \ 
 	              CLANG_TRIPLE=aarch64-linux-gnu- \ 
 	              CROSS_COMPILE="$HOME/TC/aarch64-linux-gnu-8.x/bin/aarch64-linux-gnu-"\ 
 	              KCFLAGS="$KCFLAGS" | tee build-log.txt ;
 
 else
-  ${MAKE} -j${JOBS} \ ARCH=arm64 \ CC=$HOME/RockstarKernel_r4x/dragontc/bin/clang \ CLANG_TRIPLE=aarch64-linux-gnu- \ CROSS_COMPILE="$HOME/TC/aarch64-linux-gnu-8.x/bin/aarch64-linux-gnu-";
+  ${MAKE} -j${JOBS} \ ARCH=arm64 \ CC=$PWD/dragontc/bin/clang \ CLANG_TRIPLE=aarch64-linux-gnu- \ CROSS_COMPILE="$HOME/TC/aarch64-linux-gnu-8.x/bin/aarch64-linux-gnu-";
 
 fi
  
