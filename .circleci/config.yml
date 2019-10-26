@@ -1,0 +1,11 @@
+version: 2.1 jobs:
+  compile:
+   docker:
+      - image: ubuntu:18.04
+   steps:
+      - run:
+          command: |
+           apt-get -y update && apt-get -y upgrade && apt-get -y install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev
+           git clone --depth=1 https://github.com/Dhruvgera/RockstarKernel_r4x.git -b stable
+           cd RockstarKernel_r4x
+           bash unified.sh 
