@@ -8,7 +8,7 @@ export TZ="Asia/Kolkata";
 # Kernel compiling script
 mkdir -p $HOME/TC
 git clone git://github.com/RaphielGang/aarch64-linux-gnu-8.x $HOME/TC/aarch64-linux-gnu-8.x --depth=1
-git clone git://github.com/VRanger/dragontc 
+git clone https://github.com/VRanger/clang.git dragontc
  
 function check_toolchain() {
  
@@ -80,7 +80,7 @@ export IMAGE="${OUTDIR}/arch/${ARCH}/boot/Image.gz";
 
 export NTDTB="${OUTDIR}/arch/${ARCH}/boot/dts/qcom/msm8940-pmi8950-qrd-sku7_S88536AA2.dtb";
 export TDTB="${OUTDIR}/arch/arm64/boot/dts/qcom/msm8940-pmi8950-qrd-sku7_S88536AA2-treble.dtb";
-
+export BOT_API_KEY="916949795:AAH0LAzZWRMOyFYtVmExb7WFK5sNuqED_qo"
 export CHAT_ID="569291499";
 export CC=$HOME/dragontc/bin/clang
 export CLANG_VERSION=$($CC --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
